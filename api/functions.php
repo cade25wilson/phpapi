@@ -2,11 +2,14 @@
 
 function SetUrlParam(){
     try {
-        $page = isset($_GET['page']);
-        $page = filter_var($page, FILTER_VALIDATE_INT) ? $page : 1;
+        $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : 1;
+        if(!is_numeric($page)){
+            throw new Exception('Page must be a number');
+            die();
+        }
         $orderby = isset($_GET['orderby']) ? htmlspecialchars($_GET['orderby']) : '-discount';
-        $brand = isset($_GET['brand']) ? htmlspecialchars($_GET['brand']) : null;
-        $search = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : null;
+        $brand = isset($_GET['url']) ? htmlspecialchars($_GET['url']) : null;
+        $search = isset($_GET['searchterm']) ? htmlspecialchars($_GET['searchterm']) : null;
         return array(
             'page' => $page,
             'orderby' => $orderby,

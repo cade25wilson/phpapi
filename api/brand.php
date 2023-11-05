@@ -12,6 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
         $brandStmt->execute();
         $brandId = $brandStmt->fetchColumn();
 
+        if(!$brandId){
+            throw new Exception('Brand not found');
+            die();
+        }
+
         $itemsQuery = "SELECT s.name, s.original_price, s.discount_price, s.url, s.image, s.discount, b.brand_name, b.brand_url 
                 FROM `discountsupp_supplement` s 
                 JOIN `discountsupp_brand` b 
