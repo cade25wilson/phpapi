@@ -33,8 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
         header('Content-Type: application/json');
         http_response_code(200);
         print_r(json_encode($result));
+        exit();
 
     } catch(Exception $e) {
         echo "Error: " . $e->getMessage();
     }
 }
+?>
