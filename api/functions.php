@@ -10,7 +10,7 @@ function SetUrlParam(){
         return array(
             'page' => $page,
             'orderby' => $orderby,
-            'brand' => $brand,
+            'brand' => strtolower($brand),
             'search' => $search
         );
     } catch(Exception $e) {
